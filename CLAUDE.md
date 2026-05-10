@@ -4,29 +4,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-STM32CubeMX-generated firmware project targeting **STM32F401xC** (Nucleo-64 board) using the **STM32F4 HAL** library. Currently a fresh project template with only GPIO initialized for onboard LEDs (PA8-LD2, PA9-LD1) and an empty main loop — no user application written yet.
+STM32CubeMX-generated firmware projects targeting **STM32F401xC** (Nucleo-64 board) using the **STM32F4 HAL** library. Each project under `2026/` is a CubeMX-generated template with only GPIO initialized for onboard LEDs (PA8-LD2, PA9-LD1).
+
+## Projects
+
+| Project | Description |
+|---------|-------------|
+| **Demo** | Main project template |
+| **Demo-KEY_LED** | LED demo variant (KEY) |
 
 ## Build System & Toolchain
 
-- **IDE/Toolchain**: Keil MDK-ARM (uVision5) — project file at `MDK-ARM/Project_index.uvprojx`
+- **IDE/Toolchain**: Keil MDK-ARM (uVision5)
 - **MCU**: STM32F401xC (startup file: `MDK-ARM/startup_stm32f401xc.s`)
 - **HAL Config**: `Core/Inc/stm32f4xx_hal_conf.h` — only basic HAL modules enabled (GPIO, EXTI, DMA, RCC, FLASH, PWR, CORTEX)
-- **CubeMX Config**: `Project_index.ioc` — regenerate code from this file using STM32CubeMX
+- **CubeMX Config**: `<ProjectName>.ioc` — regenerate code from this file using STM32CubeMX
 
 ## Key Commands
 
 ```bash
-# Open project in Keil uVision (double-click or from command line)
-D:\Keil_v5\UV4\UV4.exe MDK-ARM/Project_index.uvprojx
+# Open Demo project in Keil uVision
+D:\Keil_v5\UV4\UV4.exe 2026/Demo/MDK-ARM/Demo.uvprojx
+
+# Open Demo-KEY_LED project in Keil uVision
+D:\Keil_v5\UV4\UV4.exe "2026/Demo-KEY_LED/MDK-ARM/Demo-KEY_LED.uvprojx"
 
 # Regenerate code from CubeMX configuration (requires STM32CubeMX CLI)
-# Open .ioc file in STM32CubeMX GUI, then generate code
+# Open <ProjectName>.ioc file in STM32CubeMX GUI, then generate code
 ```
 
-## Project Structure
+## Project Structure (per project)
 
 ```
-2026/Project_index/
+2026/<ProjectName>/          # e.g. Demo or Demo-KEY_LED
 ├── Core/                    # User application code
 │   ├── Inc/                 # Headers
 │   │   ├── main.h           # Main header, pin defines (LD1=PA9, LD2=PA8)
@@ -43,9 +53,9 @@ D:\Keil_v5\UV4\UV4.exe MDK-ARM/Project_index.uvprojx
 │   ├── CMSIS/               # Cortex-M core headers and DSP library
 │   └── STM32F4xx_HAL_Driver/  # STM32F4 HAL peripheral drivers
 ├── MDK-ARM/                 # Keil uVision project files
-│   ├── Project_index.uvprojx   # Project file (double-click to open)
+│   ├── <ProjectName>.uvprojx   # Project file (double-click to open)
 │   └── startup_stm32f401xc.s   # Reset vector table, stack/heap init
-└── Project_index.ioc        # CubeMX hardware configuration file
+└── <ProjectName>.ioc        # CubeMX hardware configuration file
 ```
 
 ## Architecture Notes
@@ -58,7 +68,7 @@ D:\Keil_v5\UV4\UV4.exe MDK-ARM/Project_index.uvprojx
 
 ## Adding New Peripherals
 
-1. Open `Project_index.ioc` in STM32CubeMX to add/configure peripherals graphically
+1. Open `<ProjectName>.ioc` in STM32CubeMX to add/configure peripherals graphically
 2. Regenerate code — new .c/.h files appear in Core/ with `MX_<Periph>_Init()` functions
 3. Add user logic inside the generated USER CODE sections
 4. Or add peripherals manually: enable the HAL module in `stm32f4xx_hal_conf.h`, write init code, call from `main()`

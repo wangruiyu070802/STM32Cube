@@ -6,11 +6,16 @@
 
 ```
 ├── 2026/
-│   └── Project_index/    ← 当前项目（STM32F401xC / Nucleo-64）
-│       ├── Core/          — 用户代码（main.c, gpio.c 等）
-│       ├── Drivers/       — ST 官方 HAL + CMSIS 库
-│       ├── MDK-ARM/       — Keil 项目文件（.uvprojx）
-│       └── Project_index.ioc — CubeMX 配置文件
+│   ├── Demo/               — 基础项目模板（STM32F401xC / Nucleo-64）
+│   │   ├── Core/           — 用户代码（main.c, gpio.c 等）
+│   │   ├── Drivers/        — ST 官方 HAL + CMSIS 库
+│   │   ├── MDK-ARM/        — Keil 项目文件（.uvprojx）
+│   │   └── Demo.ioc        — CubeMX 配置文件
+│   └── Demo-KEY_LED/       — LED 按键演示变体
+│       ├── Core/           — 用户代码（main.c, gpio.c 等）
+│       ├── Drivers/        — ST 官方 HAL + CMSIS 库
+│       ├── MDK-ARM/        — Keil 项目文件（.uvprojx）
+│       └── Demo-KEY_LED.ioc — CubeMX 配置文件
 ├── 2027/                  ← 以后的新项目放在这里
 ├── .gitignore
 └── README.md
@@ -27,9 +32,10 @@
 
 ## 当前项目
 
-| 项目 | 年份 | MCU | 板子 |
-|------|------|-----|------|
-| Project_index | 2026 | STM32F401Cx | Nucleo-64 |
+| 项目 | 年份 | MCU | 板子 | 说明 |
+|------|------|-----|------|------|
+| Demo | 2026 | STM32F401Cx | Nucleo-64 | 基础模板，LED 点灯 |
+| Demo-KEY_LED | 2026 | STM32F401Cx | Nucleo-64 | LED 按键控制演示 |
 
 ## 开发环境
 
