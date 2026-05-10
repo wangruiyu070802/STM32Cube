@@ -1,0 +1,45 @@
+# Keil MDK-ARM — 用户特定设置（不共享）
+*.uvguix.*
+*.uvoptx
+DebugConfig/
+*.scvd
+
+# 构建输出
+Listings/
+Objects/
+*.o
+*.d
+*.crf
+*.dep
+*.axf
+*.htm
+*.map
+*.lnp
+*.iex
+*.sct
+
+# 编译器临时文件
+__i**
+*.ddk
+*.lst
+*.tra
+*.txt_diff
+*.bak
+
+# RTE 生成文件
+**/RTE/**
+!**/RTE/_**
+
+# CMSIS DSP 测试套件构建产物
+**/DSP_Lib_TestSuite/**/build/
+**/DSP_Lib_TestSuite/**/Binary/
+
+# IDE/编辑器
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
